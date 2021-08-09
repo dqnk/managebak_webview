@@ -16,6 +16,7 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             email: "",
+            buttonClick: 0,
         };
     }
     render() {
@@ -36,7 +37,7 @@ export default class App extends React.Component {
 
         const saveData = async () => {
             try {
-                await AsyncStorage.setItem(STORAGE_KEY, email);
+                await AsyncStorage.setItem(STORAGE_KEY, this.state.email);
                 alert("Data successfully saved");
             } catch (e) {
                 alert("Failed to save the data to the storage");
@@ -57,34 +58,45 @@ export default class App extends React.Component {
         //            webView();
         //        };
         const onSubmitEditing = () => {
-            if (!email) return;
-            saveData(email);
+            if (!this.state.email) return;
+            saveData(this.state.email);
         };
-        const handleClick = () => {};
+        const handleClick = () => {
+            this.setState({ buttonClick: 1 });
+        };
 
-        return (
-            <View style={styles.container}>
+        if (this.state.buttonClick < 1) {
+            return (
                 <View style={styles.container}>
-                    <TextInput
-                        style={styles.container}
-                        value={this.state.email}
-                        placeholder={"enter your email"}
-                        onChangeText={onChangeText}
-                        onSubmitEditing={onSubmitEditing}
-                    />
-                    <TouchableOpacity
-                        onPress={handleClick()}
-                        style={styles.button}
-                    >
-                        <Text style={styles.text}>
-                            {this.state.email
-                                ? this.state.email
-                                : "no email given"}
-                        </Text>
-                    </TouchableOpacity>
+                    <View style={styles.container}>
+                        <TextInput
+                            style={styles.container}
+                            value={this.state.email}
+                            placeholder={"enter your email"}
+                            onChangeText={onChangeText}
+                            onSubmitEditing={onSubmitEditing}
+                        />
+                        <TouchableOpacity
+                            //onPress={handleClick()}
+                            style={styles.button}
+                        >
+                            <Text style={styles.text}>
+                                {this.state.email
+                                    ? this.state.email
+                                    : "no email given"}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
-        );
+            );
+        } else {
+            return (
+                <WebView
+                    style={styles.container}
+                    source={{ uri: "https://www.managebac.com/login" }}
+                />
+            );
+        }
     }
 }
 
