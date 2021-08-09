@@ -54,9 +54,7 @@ export default class App extends React.Component {
         };
 
         const onChangeText = (email) => this.setState({ email: email });
-        //        handleClick = () => {
-        //            webView();
-        //        };
+
         const onSubmitEditing = () => {
             if (!this.state.email) return;
             saveData(this.state.email);
@@ -77,7 +75,7 @@ export default class App extends React.Component {
                             onSubmitEditing={onSubmitEditing}
                         />
                         <TouchableOpacity
-                            //onPress={handleClick()}
+                            onPress={() => handleClick()}
                             style={styles.button}
                         >
                             <Text style={styles.text}>
@@ -121,20 +119,3 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
 });
-//export default login;
-const webView = (url) => {
-    return (
-        <WebView
-            style={styles.container}
-            source={{ uri: "https://www.managebac.com/login" }}
-        />
-    );
-};
-
-//const styles = StyleSheet.create({
-//    container: {
-//        flex: 1,
-//        marginTop: Constants.statusBarHeight,
-//    },
-//});
-//
