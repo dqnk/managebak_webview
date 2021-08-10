@@ -82,6 +82,7 @@ export default class App extends React.Component {
                 <View style={styles.container}>
                     <View style={styles.container}>
                         <TextInput
+                            onFocus={() => readData()}
                             style={styles.container}
                             value={this.state.email}
                             placeholder={"enter your email"}
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
         color: "black",
     },
     button: {
-        margin: 10,
+        flex: 1,
         padding: 10,
         justifyContent: "center",
         alignItems: "center",
