@@ -1,4 +1,4 @@
-## Setting up the environment
+# Setting up the environment
 To set up the environment you will need a text editor, Android studio and yarn/npm. The instructions are only for Android, because this app is targeted primarily at Android where Managebac app runs terribly slow. If you know how to develop for IOS, you are free to submit a PR detailing the setup steps.
 
 ## 1. Node modules
