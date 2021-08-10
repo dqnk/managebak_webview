@@ -9,6 +9,7 @@ You could also use npm (https://reactnative.dev/docs/environment-setup), but I h
 ### Run the commands to install required dependencies
 ```shell
 yarn global add expo-cli
+cd managebak_webview
 yarn
 ```
 ### Run the application
