@@ -9,7 +9,8 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 
-const STORAGE_KEY = "@save_email";
+const STORAGE_KEY_MAIL = "@save_email";
+const STORAGE_KEY_DOMAIN = "@save_domain";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -17,16 +18,21 @@ export default class App extends React.Component {
         this.state = {
             email: "",
             buttonClick: 0,
+            domain: "",
         };
     }
     render() {
         // read data
         const readData = async () => {
             try {
-                const email = await AsyncStorage.getItem(STORAGE_KEY);
+                const email = await AsyncStorage.getItem(STORAGE_KEY_MAIL);
+                const domain = await AsyncStorage.getItem(STORAGE_KEY_DOMAIN);
 
                 if (email !== null) {
                     this.setState({ email: email });
+                }
+                if (domain !== null) {
+                    this.setState({ domain: domain });
                 }
             } catch (e) {
                 alert("Failed to fetch the data from storage");
@@ -37,10 +43,18 @@ export default class App extends React.Component {
 
         const saveData = async () => {
             try {
-                await AsyncStorage.setItem(STORAGE_KEY, this.state.email);
-                alert("Data successfully saved");
+                await AsyncStorage.setItem(STORAGE_KEY_MAIL, this.state.email);
+                var domain = this.state.email.substring(
+                    this.state.email.lastIndexOf("@") + 1
+                );
+                var end = domain.substring(0, domain.lastIndexOf("."));
+                this.setState({ domain: end });
+                await AsyncStorage.setItem(
+                    STORAGE_KEY_DOMAIN,
+                    this.state.domain
+                );
             } catch (e) {
-                alert("Failed to save the data to the storage");
+                alert(e);
             }
         };
 
@@ -91,7 +105,9 @@ export default class App extends React.Component {
             return (
                 <WebView
                     style={styles.container}
-                    source={{ uri: "https://www.managebac.com/login" }}
+                    source={{
+                        uri: `https://${this.state.domain}.managebac.com`,
+                    }}
                 />
             );
         }
