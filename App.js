@@ -82,13 +82,12 @@ export default class App extends React.Component {
                 <View style={styles.container}>
                     <View style={styles.container}>
                         <TextInput
-                            onFocus={() => readData()}
-                            style={styles.container}
-                            value={this.state.email}
-                            placeholder={"enter your email"}
-                            onChangeText={onChangeText}
-                            onSubmitEditing={onSubmitEditing}
-                        />
+        onFocus = {() => readData()} style = {styles.container} value =
+            {this.state.email} placeholder = {"enter your email"} onChangeText =
+                {onChangeText} onSubmitEditing =
+        {
+          onSubmitEditing
+        } />
                         <TouchableOpacity
                             onPress={() => handleClick()}
                             style={styles.button}
@@ -97,17 +96,18 @@ export default class App extends React.Component {
                                 {this.state.email
                                     ? this.state.email
                                     : "no email given"}
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                            </Text >
+            </TouchableOpacity>
+                    </View><
+            /View>
             );
         } else {
             return (
                 <WebView
                     style={styles.container}
                     source={{
-                        uri: `https://${this.state.domain}.managebac.com`,
+                        uri: `https:/ /
+                ${this.state.domain}.managebac.com`,
                     }}
                 />
             );
