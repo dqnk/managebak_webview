@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { WebView } from "react-native-webview";
 import {
 	StyleSheet,
@@ -80,35 +80,36 @@ export default class App extends React.Component {
 		if (this.state.buttonClick < 1) {
 			return (
 				<View style={styles.container}>
-				<View style={styles.container}>
-				<TextInput
-				onFocus = {() => readData()} style = {styles.container} value =
-				{this.state.email} placeholder = {"enter your email"} onChangeText =
-				{onChangeText} onSubmitEditing =
-				{
-					onSubmitEditing
-				} />
-				<TouchableOpacity
-				onPress={() => handleClick()}
-				style={styles.button}
-				>
-				<Text style={styles.text}>
-				{this.state.email
-					? this.state.email
-					: "no email given"}
-				</Text >
-				</TouchableOpacity>
-				</View><
-				/View>
+					<View style={styles.container}>
+						<TextInput
+							onFocus={() => readData()}
+							style={styles.container}
+							value={this.state.email}
+							placeholder={"enter your email"}
+							onChangeText={onChangeText}
+							onSubmitEditing={onSubmitEditing}
+						/>
+						<TouchableOpacity
+							onPress={() => handleClick()}
+							style={styles.button}
+						>
+							<Text style={styles.text}>
+								{this.state.email
+									? this.state.email
+									: "no email given"}
+							</Text>
+						</TouchableOpacity>
+					</View>
+				</View>
 			);
 		} else {
 			return (
 				<WebView
-				style={styles.container}
-				source={{
-					uri: `https:/ /
+					style={styles.container}
+					source={{
+						uri: `https://
 		${this.state.domain}.managebac.com`,
-				}}
+					}}
 				/>
 			);
 		}
